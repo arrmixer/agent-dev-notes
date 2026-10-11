@@ -1,0 +1,9 @@
+{
+  "name": "agentcore-playbooks",
+  "version": "0.1.0",
+  "description": "Playbooks for building, deploying, and verifying Amazon Bedrock AgentCore multi-agent systems: deploy via the agentcore CLI, X-Ray/CloudWatch observability, S3-Vectors Knowledge Bases, async provisioning, adversarial guardrail testing, and a deployment-readiness checklist.",
+  "author": { "name": "arodriguez", "url": "https://github.com/arrmixer" },
+  "homepage": "https://github.com/arrmixer/agent-dev-notes",
+  "keywords": ["bedrock", "agentcore", "multi-agent", "strands", "rag", "guardrails", "aws"],
+  "skills": ["./.claude/skills/"]
+}

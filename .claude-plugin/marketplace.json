@@ -1,0 +1,14 @@
+{
+  "name": "agent-dev-notes",
+  "owner": { "name": "arodriguez" },
+  "description": "Reusable AI-agent-development skills distilled from real Amazon Bedrock AgentCore projects.",
+  "plugins": [
+    {
+      "name": "agentcore-playbooks",
+      "source": "./",
+      "description": "Skills for building, deploying, and verifying Bedrock AgentCore multi-agent systems (deploy, observability, KBs, async-provisioning, guardrail testing, readiness checklist).",
+      "category": "aws",
+      "tags": ["bedrock", "agentcore", "multi-agent", "aws"]
+    }
+  ]
+}
