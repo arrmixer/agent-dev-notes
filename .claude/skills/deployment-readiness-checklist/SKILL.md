@@ -45,4 +45,4 @@ which direction), human-approval gates for destructive/financial actions.
 
 ## Related
 Principles: `orchestrator-is-code`, `declared-guardrail-not-enforced`. Playbooks: `deploy-to-agentcore`,
-`observability-xray-cloudwatch`, `async-provisioning`. Full template: `agentcore-reference/deployment-architecture-template.md`.
+`observability-xray-cloudwatch`, `async-provisioning`. Full template: `reference/deployment-architecture-template.md`.

@@ -57,5 +57,9 @@ The repo stays the **canonical source** for both; "going live" is the deliberate
 ## Status
 
 Seeded from `~/Developer/agentcore-reference/` after passing Udacity cd14764 (AgentCore multi-agent
-capstone), 2026-10-11. Content migration **complete**: 8 principles + 8 rules + 6 skills + language +
-retrospective + archive. Packaged as a plugin/marketplace. See `MIGRATION.md` for the tier map.
+capstone), 2026-10-11. Current: **14 principles + 14 rules + 9 skills** + 2 language docs + retrospective +
+3 archive docs, packaged as a plugin/marketplace. A loss-audit found the first pass had dropped content; a
+round-2 migration closed it — all portable knowledge from the 15 `agentcore-reference/` docs is now
+distilled here (see `MIGRATION.md` for the full disposition). Only 4 course-specific archival docs
+(`conversion-log`, `capstone-skill-matrix`, `cd14764-task-map`, old `README`) remain un-migrated by design;
+`agentcore-reference/` is retireable once you confirm those are disposable.

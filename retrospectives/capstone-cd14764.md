@@ -2,7 +2,7 @@
 
 A full worked AgentCore multi-agent system — passed 2026-10-11. This is the **reference blueprint**: how
 the pieces fit, the decisions behind each, and what I'd change. Pattern depth lives in the `principles/`
-and `playbooks/` docs (and the original `agentcore-reference/`); this is the map, not the territory.
+and `playbooks/` docs (and the original `reference/`); this is the map, not the territory.
 
 ## System at a glance
 
@@ -74,6 +74,6 @@ Deploy: agentcore CLI → CDK → AgentCore Runtime (PUBLIC/HTTP)
   mis-describe your code (trust the code); include `config.py` + evidence screenshots proactively.
 
 ## Pointers
-- Patterns in depth: `agentcore-reference/multi-agent-patterns.md`
-- Deploy/async mechanics: `agentcore-reference/lesson-stack-runbook.md`
+- Patterns in depth: `reference/multi-agent-patterns.md`
+- Deploy/async mechanics: `reference/lesson-stack-runbook.md`
 - Python idioms hit here: `language/python-vs-swift-kotlin.md` (#24 concurrency, #25 Pydantic)

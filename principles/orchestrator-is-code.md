@@ -37,4 +37,4 @@ route correctly." Push non-determinism to the leaves where judgment is actually 
 5. Make the control flow assertable (which tools fired, in what order) — that's your real test, beyond "it ran."
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§orchestration), capstone `build_orchestrator_agent` + `_run_and_record`.
+`reference/multi-agent-patterns.md` (§orchestration), capstone `build_orchestrator_agent` + `_run_and_record`.

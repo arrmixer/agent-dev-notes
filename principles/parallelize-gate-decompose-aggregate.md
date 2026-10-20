@@ -36,4 +36,4 @@ the concurrency-model choice (small-N blocking I/O → threads, not asyncio; see
 4. For small-N blocking I/O use a thread pool; reserve `asyncio` for large-N with async-native libraries.
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§parallelizing agent work), capstone `search_all_policies`.
+`reference/multi-agent-patterns.md` (§parallelizing agent work), capstone `search_all_policies`.

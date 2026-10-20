@@ -35,4 +35,4 @@ a structure never certifies the content inside it. Applies to any RAG / extracti
    empty/disclaimed; a broken one fabricates to fill the shape.
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§multi-agent RAG), L8 clinical-literature exercise.
+`reference/multi-agent-patterns.md` (§multi-agent RAG), L8 clinical-literature exercise.

@@ -40,4 +40,4 @@ the codebase). The tell is *repetition*, measured, not vibes. (Language-specific
 4. Don't add a framework for N=few; don't hand-roll the same thing N=many times. Name the N where you'd switch.
 
 ## Source
-Capstone DynamoDB + concurrency choices; `agentcore-reference/*` and `language/python-vs-swift-kotlin.md` #24–25.
+Capstone DynamoDB + concurrency choices; `reference/*` and `language/python-vs-swift-kotlin.md` #24–25.

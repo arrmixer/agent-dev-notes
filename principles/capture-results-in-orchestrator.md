@@ -38,5 +38,5 @@ and a prerequisite for [give-agents-"now"](give-agents-now.md) — facts come fr
 5. If a value is load-bearing, it must exist in state — if it only lives in a model's prose, it's not trustworthy.
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§"don't make correctness depend on the LLM echoing data"),
+`reference/multi-agent-patterns.md` (§"don't make correctness depend on the LLM echoing data"),
 capstone `WorkflowState` + `_run_and_record`.

@@ -50,4 +50,4 @@ The headline feature being present never means the behavior is correct. Prove be
 5. A gap found here is real; a "pass" from config review is not proof. See the companion skill.
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§guardrails), capstone `enhancements/adversarial_guardrail.py`.
+`reference/multi-agent-patterns.md` (§guardrails), capstone `enhancements/adversarial_guardrail.py`.

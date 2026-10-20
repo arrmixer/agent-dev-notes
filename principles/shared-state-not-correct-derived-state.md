@@ -37,4 +37,4 @@ of store. The dangerous version is subtle: everything looks consistent, so no er
 4. Treat "writes succeeded" and "state is correct" as two tests, never one.
 
 ## Source
-`agentcore-reference/multi-agent-patterns.md` (§shared state, §saga), L6 food-delivery + L7 ecommerce-checkout.
+`reference/multi-agent-patterns.md` (§shared state, §saga), L6 food-delivery + L7 ecommerce-checkout.

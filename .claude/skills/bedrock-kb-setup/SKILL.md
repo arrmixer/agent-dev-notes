@@ -30,6 +30,18 @@ lesson used managed → `managedSearchConfiguration`.)
 - **Self-managed**, not a Managed KB.
 - After creating each KB, click **Sync** on its data source (and confirm "Last sync time" / status Available).
 
+## Vector store specifics & cost (portable)
+
+- **Index config must match the embedding model exactly:** Titan Embed v2 → **1024 dimensions**, distance
+  **cosine** (not euclidean), type **FLOAT32**. A dimension mismatch doesn't warn — it **fails at ingestion/sync**.
+- **Why S3 Vectors over OpenSearch:** S3 Vectors has ~**zero idle cost** (object storage), whereas an
+  OpenSearch Serverless collection bills continuously whether queried or not. For a course/low-traffic
+  project that idle delta dominates — pick S3 Vectors.
+- **Standing charges to expect even when idle:** the KMS key + CDK bootstrap leave a small (~$1/mo) baseline;
+  not zero, but negligible next to OpenSearch.
+- **Don't `agentcore add knowledge-base`** — that path creates/owns a *managed* store (and pulls you back
+  into `managedSearchConfiguration`). Create the KB in the console against your existing S3 Vectors bucket.
+
 ## Order dependency
 The KBs need the stack's vector bucket + indexes AND the seeded policy docs — so: **stack → seed → create KBs**.
 Confirm the seed's S3 prefix matches the KB wizard prefix (`policies/returns/` etc.) or the KB ingests nothing.

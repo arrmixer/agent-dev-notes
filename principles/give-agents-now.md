@@ -36,4 +36,4 @@ worst detection profile.
    hallucinated.** Test boundary cases explicitly, not just the comfortable middle.
 
 ## Source
-Capstone live run (Refund Agent date hallucination); `agentcore-reference/multi-agent-patterns.md`.
+Capstone live run (Refund Agent date hallucination); `reference/multi-agent-patterns.md`.

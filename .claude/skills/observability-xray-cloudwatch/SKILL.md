@@ -42,3 +42,37 @@ INFO logs in CloudWatch. The map is the proof your multi-agent graph actually fa
 - 100% sampling is deliberate for a graded/audited system; drop to 5–10% for cost in high-volume prod.
 - A CloudWatch dashboard off real metrics: use `SEARCH()` on `AWS/Bedrock` (invocations/latency/tokens by
   ModelId) + a Logs Insights widget over the log group — no custom metrics needed, no hardcoded model IDs.
+
+## Deeper (managed-runtime OTel path, from the runbook)
+
+- **It's on by default — no flag.** `aws-opentelemetry-distro` in `pyproject.toml` + the managed runtime
+  auto-activates OTel (sets the exporter env). CodeZip: you ship the lib, the platform exports. Confirm in
+  logs: `telemetry.auto.version: ...-aws`, an `otel-rt-logs` stream.
+- **Three distinct CloudWatch surfaces — don't conflate:** the GenAI dashboard reads `aws/spans` (X-Ray
+  indexed; empty until an invocation); per-runtime logs `/aws/bedrock-agentcore/runtimes/<id>-DEFAULT` exist
+  on deploy with no invoke; metrics + raw logs are free on deploy, traces need an invocation.
+- **Verify Transaction Search + mind the lag:**
+  ```bash
+  aws xray get-trace-segment-destination   # want Destination: CloudWatchLogs, Status: ACTIVE
+  ```
+  Dashboard trails X-Ray by 2–3 min (up to ~10). Don't call it "empty" before then.
+- **`agentcore traces` CLI** (machine-readable superset of the console): `agentcore traces list --runtime <R>`
+  and `... get <traceId> --runtime <R>` (full OTel gen-AI JSON). Key span attrs: `gen_ai.request.model`,
+  `aws.genai.span_kind` (AGENT/LLM/TOOL), `aws.genai.token_count_total`, `gen_ai.server.time_to_first_token`.
+  Span-tree lesson: tool exec ~1ms, model ~99% of latency; two `execute_event_loop_cycle` spans = the ReAct
+  loop made visible; token totals exceed naive estimates because tool JSON is fed back on cycle 2.
+- **Error alarm via JSON metric filter** (not just the dashboard):
+  ```bash
+  aws logs put-metric-filter --log-group-name "$LG" --filter-name <N> \
+    --filter-pattern '{ $.level = "ERROR" && $.logger = "bedrock_agentcore.app" }' \
+    --metric-transformations metricName=<M>,metricNamespace=<NS>,metricValue=1,defaultValue=0
+  aws cloudwatch put-metric-alarm --alarm-name <A> --namespace <NS> --metric-name <M> --statistic Sum \
+    --period 300 --evaluation-periods 1 --threshold 5 --comparison-operator GreaterThanThreshold --treat-missing-data notBreaching
+  ```
+  Use `{ $.level = "ERROR" }` (JSON field), not text `"ERROR"` (matches user messages saying "error"); scope
+  to `$.logger = "bedrock_agentcore.app"` to exclude OTEL SDK export noise. Prove it with
+  `aws logs test-metric-filter` before any real failure. One metric filter = one log group.
+- **Cost/gotchas:** a *replaced* (vs updated) runtime **orphans its old log group — it bills indefinitely,
+  not GC'd**; the live group's id matches `list-agent-runtimes`, delete stale ones. `aws ... --output text`
+  with a scalar `--query` can append a stray `None`/`0` and corrupt a captured trace id — use `| head -1` or
+  `agentcore traces`. `agentcore stop-session` does not exist — use a distinct `--session-id` per invoke.
